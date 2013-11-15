@@ -6,23 +6,40 @@
     id="WebApp_ID" version="2.5">
     <display-name>Spring-Hibernate-Template</display-name>
  
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
-
     <servlet>
-        <servlet-name>spring</servlet-name>
-        <servlet-class>
-            org.springframework.web.servlet.DispatcherServlet
-        </servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:applicationContext.xml</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>spring</servlet-name>
-        <url-pattern>/people/*</url-pattern>
-    </servlet-mapping>
+		<servlet-name>TempLoginCheck</servlet-name>
+		<servlet-class>coreservlets.TempLoginCheck</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TempLoginCheck</servlet-name>
+		<url-pattern>/templogincheck</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RegisterSubmit</servlet-name>
+		<servlet-class>coreservlets.registersubmit</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegisterSubmit</servlet-name>
+		<url-pattern>/registersubmit</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>coreservlets.logout</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UpdateProfile</servlet-name>
+		<servlet-class>coreservlets.updateprofile</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateProfile</servlet-name>
+		<url-pattern>/updateprofile</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
