@@ -38,8 +38,8 @@ public class registersubmit extends HttpServlet {
 		}
 		try {
 			Connection con = DriverManager.getConnection(
-					"jdbc:postgresql://127.0.0.1:5432/demo", "postgres",
-					"password");
+					"jdbc:postgresql://ec2-23-23-81-171.compute-1.amazonaws.com:5432/d3der2cpdnsd7k", "oougodzmcwhapf",
+					"srdrgT5PV-VxBxlDGBPtzmFfsg");
 			Statement stmt = con.createStatement();
 			boolean rs = stmt.execute(updateQuery);
 			
