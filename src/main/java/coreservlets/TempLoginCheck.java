@@ -29,9 +29,8 @@ public class TempLoginCheck extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		try {
-			Connection con = DriverManager.getConnection(
-					"jdbc:postgresql://ec2-23-23-81-171.compute-1.amazonaws.com:5432/d3der2cpdnsd7k", "oougodzmcwhapf",
-					"srdrgT5PV-VxBxlDGBPtzmFfsg");
+			String url = "jdbc:postgresql://ec2-23-23-81-171.compute-1.amazonaws.com:5432/d3der2cpdnsd7k?user=oougodzmcwhapf&password=srdrgT5PV-VxBxlDGBPtzmFfsg&ssl=true";
+			Connection con = DriverManager.getConnection(url);
 			Statement stmt = con.createStatement();
 			// This is where the request is actually happening.
 			ResultSet rs = stmt.executeQuery(searchQuery);

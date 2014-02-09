@@ -3,10 +3,6 @@ package coreservlets;
 import java.io.IOException;
 import java.sql.*;
 
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +25,9 @@ public class registersubmit extends HttpServlet {
 		String updateQuery = "INSERT INTO accounts (email, password)"
 				+ " VALUES ('"
 				+ email + "','"
-				+ password + "');";
+				+ password + "');"
+				+ "INSERT INTO profiles (user_id)"
+				+ " SELECT accounts.user_id FROM accounts WHERE accounts.email = '"	+ email + "';";
 
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -37,9 +35,8 @@ public class registersubmit extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		try {
-			Connection con = DriverManager.getConnection(
-					"jdbc:postgresql://ec2-23-23-81-171.compute-1.amazonaws.com:5432/d3der2cpdnsd7k", "oougodzmcwhapf",
-					"srdrgT5PV-VxBxlDGBPtzmFfsg");
+			String url = "jdbc:postgresql://ec2-23-23-81-171.compute-1.amazonaws.com:5432/d3der2cpdnsd7k?user=oougodzmcwhapf&password=srdrgT5PV-VxBxlDGBPtzmFfsg&ssl=true";
+			Connection con = DriverManager.getConnection(url);
 			Statement stmt = con.createStatement();
 			boolean rs = stmt.execute(updateQuery);
 			
