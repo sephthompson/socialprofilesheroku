@@ -60,7 +60,7 @@
 	
 	<security-constraint>
     <web-resource-collection>
-      <web-resource-name>All Apps</web-resource-name>
+      <web-resource-name>secured</web-resource-name>
       <url-pattern>/*</url-pattern>
     </web-resource-collection>
     <user-data-constraint>
