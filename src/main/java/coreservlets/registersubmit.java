@@ -3,6 +3,10 @@ package coreservlets;
 import java.io.IOException;
 import java.sql.*;
 
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
