@@ -21,10 +21,6 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>spring</servlet-name>
-        <url-pattern>/people/*</url-pattern>
-    </servlet-mapping>
     
     <servlet>
 		<servlet-name>TempLoginCheck</servlet-name>
@@ -61,5 +57,15 @@
 		<servlet-name>UpdateProfile</servlet-name>
 		<url-pattern>/updateprofile</url-pattern>
 	</servlet-mapping>
+	
+	<security-constraint>
+    <web-resource-collection>
+      <web-resource-name>All Apps</web-resource-name>
+      <url-pattern>/*</url-pattern>
+    </web-resource-collection>
+    <user-data-constraint>
+      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
 	
 </web-app>
