@@ -36,7 +36,7 @@ public class updateprofile extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		try {
-			String url = "jdbc:postgresql://ec2-23-23-81-171.compute-1.amazonaws.com:5432/d3der2cpdnsd7k?user=oougodzmcwhapf&password=srdrgT5PV-VxBxlDGBPtzmFfsg&ssl=true";
+			String url = "jdbc:postgresql://ec2-23-23-81-171.compute-1.amazonaws.com:5432/d3der2cpdnsd7k?user=oougodzmcwhapf&password=srdrgT5PV-VxBxlDGBPtzmFfsg";
 			Connection con = DriverManager.getConnection(url);
 			Statement stmt = con.createStatement();
 			boolean rs = stmt.execute(updateQuery);
