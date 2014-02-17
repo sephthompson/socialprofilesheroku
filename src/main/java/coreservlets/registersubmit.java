@@ -16,27 +16,26 @@ import javax.servlet.http.HttpServletResponse;
 
 public class registersubmit extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1029849297015934427L;
 	private static String pattern1 = "[\\s\\,]";
 	private static String pattern2 = "[\\s]";
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
 		String email = request.getParameter("email").replaceAll(pattern1, "");
-		String password = request.getParameter("password").replaceAll(pattern2, "");
-		
-		//email = email.replaceAll(pattern1, "");
-		//password = password.replaceAll(pattern2, "");
+		String password = request.getParameter("password").replaceAll(pattern2,
+				"");
 
 		String updateQuery = "INSERT INTO accounts (email, password)"
 				+ " VALUES ('"
-				+ email + "','"
-				+ password + "');"
+				+ email
+				+ "','"
+				+ password
+				+ "');"
 				+ "INSERT INTO profiles (user_id)"
-				+ " SELECT accounts.user_id FROM accounts WHERE accounts.email = '"	+ email + "';";
+				+ " SELECT accounts.user_id FROM accounts WHERE accounts.email = '"
+				+ email + "';";
 
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -48,7 +47,23 @@ public class registersubmit extends HttpServlet {
 			Connection con = DriverManager.getConnection(url);
 			Statement stmt = con.createStatement();
 			boolean rs = stmt.execute(updateQuery);
+
+			/* PreparedStatement ps = con
+					.prepareStatement("INSERT INTO accounts (email, password)"
+							+ " VALUES ('"
+							+ "?"
+							+ "','"
+							+ "?"
+							+ "');"
+							+ "INSERT INTO profiles (user_id)"
+							+ " SELECT accounts.user_id FROM accounts WHERE accounts.email = '"
+							+ "?" + "';");
+
+			ps.setString(1, email);
+			ps.setString(2, password);
 			
+			ResultSet rs = ps.executeQuery(); */
+
 			response.sendRedirect("welcome.jsp");
 
 		} catch (SQLException e) {
