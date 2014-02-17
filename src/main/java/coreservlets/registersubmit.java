@@ -20,16 +20,16 @@ public class registersubmit extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1029849297015934427L;
-	private static String pattern1 = "[\\s\\,]";
-	private static String pattern2 = "[\\s]";
+	//private static String pattern1 = "[\\s\\,]";
+	//private static String pattern2 = "[\\s]";
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		email.replaceAll(pattern1, "");
-		password.replaceAll(pattern2, "");
+		//email.replaceAll(pattern1, "");
+		//password.replaceAll(pattern2, "");
 
 		String updateQuery = "INSERT INTO accounts (email, password)"
 				+ " VALUES ('"
