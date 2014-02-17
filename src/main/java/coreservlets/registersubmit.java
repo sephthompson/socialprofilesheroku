@@ -25,11 +25,11 @@ public class registersubmit extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		String email = request.getParameter("email").replaceAll(pattern1, "");
+		String password = request.getParameter("password").replaceAll(pattern2, "");
 		
-		email.replaceAll(pattern1, "");
-		password.replaceAll(pattern2, "");
+		//email = email.replaceAll(pattern1, "");
+		//password = password.replaceAll(pattern2, "");
 
 		String updateQuery = "INSERT INTO accounts (email, password)"
 				+ " VALUES ('"
