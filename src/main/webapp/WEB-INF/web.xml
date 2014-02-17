@@ -68,7 +68,7 @@
     </user-data-constraint>
   </security-constraint> -->
   
-	<filter>
+	<!-- <filter>
 		<filter-name>RegexFilter</filter-name>
 		<filter-class>com.example.RegexFilter</filter-class>
 		<init-param>
@@ -85,6 +85,6 @@
 	<filter-mapping>
 		<filter-name>RegexFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 	
 </web-app>

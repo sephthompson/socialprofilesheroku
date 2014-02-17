@@ -114,7 +114,7 @@
 			</resource>
 		</resources> -->
 	</build>
-	<dependencyManagement>
+	<!-- <dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>junit</groupId>
@@ -122,5 +122,5 @@
 				<version>4.11</version>
 			</dependency>
 		</dependencies>
-	</dependencyManagement>
+	</dependencyManagement> -->
 </project>
