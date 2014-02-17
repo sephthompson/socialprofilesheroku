@@ -67,5 +67,24 @@
       <transport-guarantee>CONFIDENTIAL</transport-guarantee>
     </user-data-constraint>
   </security-constraint> -->
+  
+	<filter>
+		<filter-name>RegexFilter</filter-name>
+		<filter-class>com.example.RegexFilter</filter-class>
+		<init-param>
+			<param-name>search1</param-name>
+			<param-value>
+				<![CDATA[(<\s*a\s[^>]*)(?<=\s)target\s*=\s*(?:'_parent'|"_parent"|_parent|'_top'|"_top"|_top)]]>
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>replace1</param-name>
+			<param-value>$1</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>RegexFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	
 </web-app>
