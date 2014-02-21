@@ -24,18 +24,14 @@ public class registersubmit extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		String email = request.getParameter("email").replaceAll(pattern1, "");
-		String password = request.getParameter("password").replaceAll(pattern2,
-				"");
+		String password = request.getParameter("password").replaceAll(pattern2, "");
 
-		String updateQuery = "INSERT INTO accounts (email, password)"
-				+ " VALUES ('"
-				+ email
-				+ "','"
-				+ password
-				+ "');"
+		String preppedQuery = "INSERT INTO accounts (email, password)"
+				+ " VALUES (?, ?);"
 				+ "INSERT INTO profiles (user_id)"
-				+ " SELECT accounts.user_id FROM accounts WHERE accounts.email = '"
-				+ email + "';";
+				+ " SELECT accounts.user_id"
+				+ " FROM accounts"
+				+ " WHERE accounts.email = ?;";
 
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -45,25 +41,15 @@ public class registersubmit extends HttpServlet {
 		try {
 			String url = "jdbc:postgresql://ec2-23-23-81-171.compute-1.amazonaws.com:5432/d3der2cpdnsd7k?user=oougodzmcwhapf&password=srdrgT5PV-VxBxlDGBPtzmFfsg";
 			Connection con = DriverManager.getConnection(url);
-			Statement stmt = con.createStatement();
-			boolean rs = stmt.execute(updateQuery);
-
-			/* PreparedStatement ps = con
-					.prepareStatement("INSERT INTO accounts (email, password)"
-							+ " VALUES ('"
-							+ "?"
-							+ "','"
-							+ "?"
-							+ "');"
-							+ "INSERT INTO profiles (user_id)"
-							+ " SELECT accounts.user_id FROM accounts WHERE accounts.email = '"
-							+ "?" + "';");
+			
+			PreparedStatement ps = con.prepareStatement(preppedQuery);
 
 			ps.setString(1, email);
 			ps.setString(2, password);
-			
-			ResultSet rs = ps.executeQuery(); */
+			ps.setString(3, email);
 
+			boolean rs = ps.execute();
+			
 			response.sendRedirect("welcome.jsp");
 
 		} catch (SQLException e) {
