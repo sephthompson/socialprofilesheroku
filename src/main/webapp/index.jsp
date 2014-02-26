@@ -33,6 +33,7 @@
 					</td>
 			</tbody>
 		</table>
+		<%@include file="/debugoutput.jsp"%>
 	</center>
 </body>
 </html>

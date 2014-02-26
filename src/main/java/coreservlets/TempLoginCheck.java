@@ -36,34 +36,22 @@ public class TempLoginCheck extends HttpServlet {
 			ResultSet rs = stmt.executeQuery(searchQuery);
 			boolean isEmpty = rs.next();
 			if (!isEmpty) {
-				// redirect to error page
+				// Redirect to error page
 				response.sendRedirect("LoginFailure.jsp");
 			} else if (isEmpty) {
-				// fetch the session from request, create new session if session
-				// is not present in the request
+				/* 
+				 * Fetch the session from request, create new session if session
+				 * is not present in the request.
+				*/ 
 				HttpSession session = request.getSession(true);
 				session.setAttribute("email", rs.getString("email"));
 				session.setAttribute("firstname", rs.getString("firstname"));
 				session.setAttribute("lastname", rs.getString("lastname"));
 				session.setAttribute("about", rs.getString("about"));
-				// redirect to success page
+				
+				// Redirect to success page
 				response.sendRedirect("LoginSuccess.jsp");
 
-				/*
-				 * // COOKIES SET HERE Cookie emailCookie = new Cookie("abc",
-				 * email); Cookie passCookie = new Cookie("def", password); //
-				 * setMaxAge is measured in seconds, so: // 60 secs (1 minute)
-				 * times 60 (1 hour) times 24 (1 day) // Which equals 86400
-				 * seconds in a day. emailCookie.setMaxAge(60 * 60 * 24);
-				 * passCookie.setMaxAge(60 * 60 * 24);
-				 * 
-				 * response.addCookie(emailCookie);
-				 * response.addCookie(passCookie);
-				 * 
-				 * System.out.println("Email address: " + email + "\n" +
-				 * "Password: " + password); System.out.println(
-				 * "<a href=\"BrowseCookie\">View All Cookies</a>");
-				 */
 			}
 		} catch (SQLException e) {
 			System.out.println("SQLException occured: " + e.getMessage());

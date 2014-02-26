@@ -26,6 +26,10 @@
 				</tr>
 			</tbody>
 		</table>
+		<p>
+			<a href=index.jsp>HOME</a>
+		</p>
+		<%@include file="/debugoutput.jsp"%>
 	</center>
 </body>
 </html>
