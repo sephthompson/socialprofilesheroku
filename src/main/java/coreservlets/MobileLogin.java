@@ -20,7 +20,7 @@ public class MobileLogin extends HttpServlet {
 	private static String pattern2 = "[\\s]";
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getOutputStream().println("Hurray !! This Servlet Works");
+        response.getOutputStream().println("You are accessing this servlet via the get method.  Congratulations, it works.");
     }
 
 	protected void doPost(HttpServletRequest request,
