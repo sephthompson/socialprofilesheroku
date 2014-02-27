@@ -59,6 +59,15 @@
 		<url-pattern>/updateprofile</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>MobileLogin</servlet-name>
+		<servlet-class>coreservlets.MobileLogin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MobileLogin</servlet-name>
+		<url-pattern>/MobileLogin</url-pattern>
+	</servlet-mapping>
+	
 	<!-- <security-constraint>
     <web-resource-collection>
       <web-resource-name>secured</web-resource-name>
