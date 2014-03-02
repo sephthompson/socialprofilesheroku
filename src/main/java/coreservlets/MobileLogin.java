@@ -67,9 +67,9 @@ public class MobileLogin extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		response.getOutputStream()
+		/* response.getOutputStream()
 				.println(
-						"You are accessing this servlet via the get method.  Congratulations, it works.  Now get out of here.");
+						"You are accessing this servlet via the get method.  Congratulations, it works.  Now get out of here."); */
 		processRequest(request, response);
 	}
 
