@@ -43,8 +43,8 @@ public class MobileLogin extends HttpServlet {
 			boolean isEmpty = rs.next();
 			if (!isEmpty) {
 				// Redirect to error page
-				//response.sendRedirect("LoginFailure.jsp");
-				response.sendError(500);
+				response.sendRedirect("LoginFailure.jsp");
+
 			} else if (isEmpty) {
 				/*
 				 * Fetch the session from request, create new session if session
@@ -57,8 +57,7 @@ public class MobileLogin extends HttpServlet {
 				session.setAttribute("about", rs.getString("about"));
 
 				// Redirect to success page
-				// response.sendRedirect("LoginSuccess.jsp");
-				response.setStatus(response.SC_OK);
+				response.sendRedirect("LoginSuccess.jsp");
 
 			}
 		} catch (SQLException e) {
