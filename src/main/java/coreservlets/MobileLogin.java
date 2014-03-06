@@ -48,7 +48,7 @@ public class MobileLogin extends HttpServlet {
 				// Redirect to error page
 				// response.sendRedirect("LoginFailure.jsp");
 				
-				rw.write("success");
+				rw.write("failure");
 
 			} else if (isEmpty) {
 				/*
@@ -64,7 +64,7 @@ public class MobileLogin extends HttpServlet {
 				// Redirect to success page
 				// response.sendRedirect("LoginSuccess.jsp");
 				
-				rw.write("failure");
+				rw.write("success");
 
 			}
 		} catch (SQLException e) {
