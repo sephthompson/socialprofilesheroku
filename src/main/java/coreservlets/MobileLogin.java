@@ -41,9 +41,14 @@ public class MobileLogin extends HttpServlet {
 			// This is where the request is actually happening.
 			ResultSet rs = stmt.executeQuery(searchQuery);
 			boolean isEmpty = rs.next();
+			
+			PrintWriter rw = response.getWriter(); // WRITER
+			
 			if (!isEmpty) {
 				// Redirect to error page
-				response.sendRedirect("LoginFailure.jsp");
+				// response.sendRedirect("LoginFailure.jsp");
+				
+				rw.write("success");
 
 			} else if (isEmpty) {
 				/*
@@ -57,7 +62,9 @@ public class MobileLogin extends HttpServlet {
 				session.setAttribute("about", rs.getString("about"));
 
 				// Redirect to success page
-				response.sendRedirect("LoginSuccess.jsp");
+				// response.sendRedirect("LoginSuccess.jsp");
+				
+				rw.write("failure");
 
 			}
 		} catch (SQLException e) {
@@ -68,9 +75,6 @@ public class MobileLogin extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		/* response.getOutputStream()
-				.println(
-						"You are accessing this servlet via the get method.  Congratulations, it works.  Now get out of here."); */
 		processRequest(request, response);
 	}
 
