@@ -21,13 +21,17 @@ public class MobileLogin extends HttpServlet {
 	protected void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		// PrintWriter out = response.getWriter();
 		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String searchQuery = "SELECT * FROM accounts, profiles"
 				+ " WHERE email = '" + email + "'" + " AND password = '"
 				+ password + "'" + " AND accounts.user_id = profiles.user_id;";
+		
+		Connection con = null;
+		Statement stmt = null;
+		// PreparedStatement ps = null;
+		ResultSet rs = null;
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -36,10 +40,10 @@ public class MobileLogin extends HttpServlet {
 		}
 		try {
 			String url = "jdbc:postgresql://ec2-23-23-81-171.compute-1.amazonaws.com:5432/d3der2cpdnsd7k?user=oougodzmcwhapf&password=srdrgT5PV-VxBxlDGBPtzmFfsg";
-			Connection con = DriverManager.getConnection(url);
-			Statement stmt = con.createStatement();
+			con = DriverManager.getConnection(url);
+			stmt = con.createStatement();
 			// This is where the request is actually happening.
-			ResultSet rs = stmt.executeQuery(searchQuery);
+			rs = stmt.executeQuery(searchQuery);
 			boolean isEmpty = rs.next();
 			
 			PrintWriter rw = response.getWriter(); // WRITER
@@ -70,6 +74,17 @@ public class MobileLogin extends HttpServlet {
 		} catch (SQLException e) {
 			System.out.println("SQLException occured: " + e.getMessage());
 			e.printStackTrace();
+		} finally {
+		    if (rs != null) {
+		        try {
+		            rs.close();
+		        } catch (SQLException e) { /* ignored */}
+		    }
+		    if (con != null) {
+		        try {
+		            con.close();
+		        } catch (SQLException e) { /* ignored */}
+		    }
 		}
 	}
 
