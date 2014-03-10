@@ -34,7 +34,8 @@ public class MobileRegister extends HttpServlet {
 				+ " SELECT accounts.user_id" + " FROM accounts"
 				+ " WHERE accounts.email = ?;" + "UPDATE profiles SET"
 				+ " firstname = ?, lastname = ?"
-				+ " FROM accounts WHERE accounts.email = ?;";
+				+ " FROM accounts WHERE accounts.user_id = profiles.user_id"
+				+ " AND accounts.email = ?;";
 		
 		Connection con = null;
 		// Statement stmt = null;
