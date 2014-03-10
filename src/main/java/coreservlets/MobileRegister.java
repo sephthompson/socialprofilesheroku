@@ -96,11 +96,9 @@ public class MobileRegister extends HttpServlet {
 		            con.close();
 		        } catch (SQLException e) { e.printStackTrace();}
 		    }
-/*
 		    if (rs == null) {
 		    	rw.write("RESULT SET EMPTY");
 		    }
-*/
 		}
 	}
 	

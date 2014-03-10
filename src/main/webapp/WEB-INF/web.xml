@@ -65,7 +65,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>MobileLogin</servlet-name>
-		<url-pattern>/MobileLogin</url-pattern>
+		<url-pattern>/mobilelogin</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -74,7 +74,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>MobileRegister</servlet-name>
-		<url-pattern>/MobileRegister</url-pattern>
+		<url-pattern>/mobileregister</url-pattern>
 	</servlet-mapping>
 	
 	<!-- <security-constraint>
