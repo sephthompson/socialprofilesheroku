@@ -16,7 +16,7 @@ public class MobileRegister extends HttpServlet {
 	private static String pattern1 = "[\\s\\,]";
 	private static String pattern2 = "[\\s]";
 
-	protected void processRequest(HttpServletRequest request,
+	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		
@@ -115,15 +115,5 @@ public class MobileRegister extends HttpServlet {
 		    	rw.write("RESULT SET EMPTY");
 		    }
 		}
-	}
-	
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request, response);
-	}
-	
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request, response);
 	}
 }
