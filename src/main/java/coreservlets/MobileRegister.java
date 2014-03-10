@@ -16,7 +16,7 @@ public class MobileRegister extends HttpServlet {
 	private static String pattern1 = "[\\s\\,]";
 	private static String pattern2 = "[\\s]";
 
-	protected void doPost(HttpServletRequest request,
+	protected void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		
@@ -63,9 +63,34 @@ public class MobileRegister extends HttpServlet {
 
 			System.out.println("SQL=" + preppedQuery.toString()); // DEBUG
 
-			ps.execute();
+			rs = ps.executeQuery(preppedQuery);
+			boolean isEmpty = rs.next();
+			
+			if (!isEmpty) {
+				// Redirect to error page
+				// response.sendRedirect("LoginFailure.jsp");
+				
+				rw.print("failure");
 
-			System.out.println("Executed=" + preppedQuery.toString()); // DEBUG
+			} else if (isEmpty) {
+				/*
+				 * Fetch the session from request, create new session if session
+				 * is not present in the request.
+				 */
+				HttpSession session = request.getSession(true);
+				session.setAttribute("email", rs.getString("email"));
+				session.setAttribute("firstname", rs.getString("firstname"));
+				session.setAttribute("lastname", rs.getString("lastname"));
+				session.setAttribute("about", rs.getString("about"));
+
+				// Redirect to success page
+				// response.sendRedirect("LoginSuccess.jsp");
+				
+				rw.print("success");
+
+			}
+
+			/*System.out.println("Executed=" + preppedQuery.toString()); // DEBUG
 
 			HttpSession session = request.getSession(true);
 			session.setAttribute("user_id", user_id);
@@ -76,7 +101,7 @@ public class MobileRegister extends HttpServlet {
 			
 			// RESPONSE TO CLIENT
 			rw.write("success");
-			response.sendRedirect("welcome.jsp");
+			response.sendRedirect("welcome.jsp");*/
 
 		} catch (SQLException e) {
 			System.out.println("SQLException occured: " + e.getMessage());
@@ -107,5 +132,10 @@ public class MobileRegister extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// processRequest(request, response);
 		System.out.println("WHAT");
+	}
+	
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request, response);
 	}
 }
