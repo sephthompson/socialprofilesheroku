@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//import javax.servlet.http.HttpSession;
-
 public class MobileRegister extends HttpServlet {
 
 	private static final long serialVersionUID = 1029849297015934427L;
@@ -34,9 +32,9 @@ public class MobileRegister extends HttpServlet {
 		String preppedQuery = "INSERT INTO accounts (email, password)"
 				+ " VALUES (?, ?);" + "INSERT INTO profiles (user_id)"
 				+ " SELECT accounts.user_id" + " FROM accounts"
-				+ " WHERE accounts.email = ?;"
-				+ "INSERT INTO profiles (firstname, lastname)"
-				+ " VALUES (?, ?);";
+				+ " WHERE accounts.email = ?;" + "UPDATE profiles SET"
+				+ " firstname = ?, lastname = ?"
+				+ " FROM accounts WHERE accounts.email = ?;";
 		
 		Connection con = null;
 		// Statement stmt = null;
@@ -61,6 +59,7 @@ public class MobileRegister extends HttpServlet {
 			ps.setString(3, email);
 			ps.setString(4, firstname);
 			ps.setString(5, lastname);
+			ps.setString(6, email);
 
 			System.out.println("SQL=" + preppedQuery.toString()); // DEBUG
 
@@ -72,11 +71,10 @@ public class MobileRegister extends HttpServlet {
 			session.setAttribute("user_id", user_id);
 			session.setAttribute("email", email);
 			session.setAttribute("password", password);
-			session.setAttribute("firstname", email);
-			session.setAttribute("lastname", password);
+			session.setAttribute("firstname", firstname);
+			session.setAttribute("lastname", lastname);
 			
 			// RESPONSE TO CLIENT
-			// response.sendRedirect("welcome.jsp");
 			rw.write("success");
 
 		} catch (SQLException e) {
@@ -98,9 +96,11 @@ public class MobileRegister extends HttpServlet {
 		            con.close();
 		        } catch (SQLException e) { e.printStackTrace();}
 		    }
+/*
 		    if (rs == null) {
 		    	rw.write("RESULT SET EMPTY");
 		    }
+*/
 		}
 	}
 	
