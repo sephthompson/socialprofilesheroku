@@ -68,6 +68,15 @@
 		<url-pattern>/MobileLogin</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>MobileRegister</servlet-name>
+		<servlet-class>coreservlets.MobileRegister</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MobileRegister</servlet-name>
+		<url-pattern>/MobileRegister</url-pattern>
+	</servlet-mapping>
+	
 	<!-- <security-constraint>
     <web-resource-collection>
       <web-resource-name>secured</web-resource-name>
