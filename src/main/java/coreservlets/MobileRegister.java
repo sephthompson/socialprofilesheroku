@@ -63,9 +63,9 @@ public class MobileRegister extends HttpServlet {
 
 			System.out.println("SQL=" + preppedQuery.toString()); // DEBUG
 
-			rs = ps.executeQuery(preppedQuery);
+			/* rs = ps.executeQuery(preppedQuery);
 			
-			/* boolean isEmpty = rs.next();
+			boolean isEmpty = rs.next();
 			
 			if (!isEmpty) {
 				
@@ -86,6 +86,8 @@ public class MobileRegister extends HttpServlet {
 				rw.print("success");
 
 			} */
+			
+			ps.executeQuery(preppedQuery);
 
 			System.out.println("Executed=" + preppedQuery.toString()); // DEBUG
 			
