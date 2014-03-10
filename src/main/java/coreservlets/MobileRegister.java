@@ -28,6 +28,8 @@ public class MobileRegister extends HttpServlet {
 				"");
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
+		
+		PrintWriter rw = response.getWriter(); // WRITER
 
 		String preppedQuery = "INSERT INTO accounts (email, password)"
 				+ " VALUES (?, ?);" + "INSERT INTO profiles (user_id)"
@@ -53,8 +55,6 @@ public class MobileRegister extends HttpServlet {
 			System.out.println(preppedQuery); // DEBUG
 
 			ps = con.prepareStatement(preppedQuery);
-			
-			PrintWriter rw = response.getWriter(); // WRITER
 
 			ps.setString(1, email);
 			ps.setString(2, password);
@@ -86,17 +86,20 @@ public class MobileRegister extends HttpServlet {
 		    if (rs != null) {
 		        try {
 		            rs.close();
-		        } catch (SQLException e) { /* ignored */}
+		        } catch (SQLException e) { e.printStackTrace();}
 		    }
 		    if (ps != null) {
 		        try {
 		            ps.close();
-		        } catch (SQLException e) { /* ignored */}
+		        } catch (SQLException e) { e.printStackTrace(); }
 		    }
 		    if (con != null) {
 		        try {
 		            con.close();
-		        } catch (SQLException e) { /* ignored */}
+		        } catch (SQLException e) { e.printStackTrace();}
+		    }
+		    if (rs == null) {
+		    	rw.write("RESULT SET EMPTY");
 		    }
 		}
 	}
