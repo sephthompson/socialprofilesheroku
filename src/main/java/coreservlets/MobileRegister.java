@@ -99,9 +99,9 @@ public class MobileRegister extends HttpServlet {
 			session.setAttribute("firstname", firstname);
 			session.setAttribute("lastname", lastname);
 			
-			// RESPONSE TO CLIENT
+			// RESPONSE TO CLIENT */
 			rw.write("success");
-			response.sendRedirect("welcome.jsp");*/
+			response.sendRedirect("welcome.jsp");
 
 		} catch (SQLException e) {
 			System.out.println("SQLException occured: " + e.getMessage());
