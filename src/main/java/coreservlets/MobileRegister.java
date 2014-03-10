@@ -67,8 +67,6 @@ public class MobileRegister extends HttpServlet {
 			boolean isEmpty = rs.next();
 			
 			if (!isEmpty) {
-				// Redirect to error page
-				// response.sendRedirect("LoginFailure.jsp");
 				
 				rw.print("failure");
 
@@ -78,29 +76,20 @@ public class MobileRegister extends HttpServlet {
 				 * is not present in the request.
 				 */
 				HttpSession session = request.getSession(true);
-				session.setAttribute("email", rs.getString("email"));
-				session.setAttribute("firstname", rs.getString("firstname"));
-				session.setAttribute("lastname", rs.getString("lastname"));
-				session.setAttribute("about", rs.getString("about"));
-
-				// Redirect to success page
-				// response.sendRedirect("LoginSuccess.jsp");
+				session.setAttribute("user_id", user_id);
+				session.setAttribute("email", email);
+				session.setAttribute("password", password);
+				session.setAttribute("firstname", firstname);
+				session.setAttribute("lastname", lastname);
 				
 				rw.print("success");
 
 			}
 
-			/*System.out.println("Executed=" + preppedQuery.toString()); // DEBUG
-
-			HttpSession session = request.getSession(true);
-			session.setAttribute("user_id", user_id);
-			session.setAttribute("email", email);
-			session.setAttribute("password", password);
-			session.setAttribute("firstname", firstname);
-			session.setAttribute("lastname", lastname);
+			System.out.println("Executed=" + preppedQuery.toString()); // DEBUG
 			
 			// RESPONSE TO CLIENT */
-			rw.write("success");
+			rw.print("success");
 			response.sendRedirect("welcome.jsp");
 
 		} catch (SQLException e) {
@@ -130,8 +119,7 @@ public class MobileRegister extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// processRequest(request, response);
-		System.out.println("WHAT");
+		processRequest(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request,
