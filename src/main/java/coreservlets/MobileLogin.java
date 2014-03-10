@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//import javax.servlet.http.HttpSession;
-
 public class MobileLogin extends HttpServlet {
 
 	private static final long serialVersionUID = 1029849297015934427L;

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 public class MobileRegister extends HttpServlet {
 
-	private static final long serialVersionUID = 1029849297015934427L;
+	private static final long serialVersionUID = -4697608774711048440L;
 	private static String pattern1 = "[\\s\\,]";
 	private static String pattern2 = "[\\s]";
 
@@ -22,8 +22,7 @@ public class MobileRegister extends HttpServlet {
 		
 		String user_id = request.getParameter("user_id");
 		String email = request.getParameter("email").replaceAll(pattern1, "");
-		String password = request.getParameter("password").replaceAll(pattern2,
-				"");
+		String password = request.getParameter("password").replaceAll(pattern2, "");
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		
@@ -77,6 +76,7 @@ public class MobileRegister extends HttpServlet {
 			
 			// RESPONSE TO CLIENT
 			rw.write("success");
+			response.sendRedirect("welcome.jsp");
 
 		} catch (SQLException e) {
 			System.out.println("SQLException occured: " + e.getMessage());
@@ -106,6 +106,7 @@ public class MobileRegister extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
+		System.out.println("WHAT");
 	}
 
 	protected void doPost(HttpServletRequest request,
