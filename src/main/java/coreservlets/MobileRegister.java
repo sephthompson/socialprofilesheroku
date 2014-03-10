@@ -64,17 +64,18 @@ public class MobileRegister extends HttpServlet {
 			System.out.println("SQL=" + preppedQuery.toString()); // DEBUG
 
 			rs = ps.executeQuery(preppedQuery);
-			boolean isEmpty = rs.next();
+			
+			/* boolean isEmpty = rs.next();
 			
 			if (!isEmpty) {
 				
 				rw.print("failure");
 
 			} else if (isEmpty) {
-				/*
-				 * Fetch the session from request, create new session if session
-				 * is not present in the request.
-				 */
+				
+				// Fetch the session from request, create new session if session
+				// is not present in the request.
+				 
 				HttpSession session = request.getSession(true);
 				session.setAttribute("user_id", user_id);
 				session.setAttribute("email", email);
@@ -84,13 +85,19 @@ public class MobileRegister extends HttpServlet {
 				
 				rw.print("success");
 
-			}
+			} */
 
 			System.out.println("Executed=" + preppedQuery.toString()); // DEBUG
 			
+			HttpSession session = request.getSession(true);
+			session.setAttribute("user_id", user_id);
+			session.setAttribute("email", email);
+			session.setAttribute("password", password);
+			session.setAttribute("firstname", firstname);
+			session.setAttribute("lastname", lastname);
+			
 			// RESPONSE TO CLIENT */
 			rw.print("success");
-			response.sendRedirect("welcome.jsp");
 
 		} catch (SQLException e) {
 			System.out.println("SQLException occured: " + e.getMessage());
