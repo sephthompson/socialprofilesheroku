@@ -62,7 +62,7 @@ public class MobileRegister extends HttpServlet {
 				ps.setString(6, email);
 				
 				try {
-					ps.executeQuery(preppedQuery);
+					ps.executeQuery();
 					
 					HttpSession session = request.getSession(true);
 					session.setAttribute("user_id", user_id);
