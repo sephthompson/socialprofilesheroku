@@ -21,7 +21,7 @@ public class MobileRegister extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		
 		String user_id = request.getParameter("user_id");
-		String email = request.getParameter("email");//.replaceAll(pattern1, "");
+		String email = request.getParameter("email").replaceAll(pattern1, "");
 		String password = request.getParameter("password").replaceAll(pattern2, "");
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
