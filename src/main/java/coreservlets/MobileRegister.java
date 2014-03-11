@@ -76,20 +76,20 @@ public class MobileRegister extends HttpServlet {
 					
 				} catch (Exception e) {
 					// e.printStackTrace();
-					rw.print(e);
+					rw.print("PS.EXECUTEQUERY RESULTS: " + e);
 				}
 				
 				}
 			catch (Exception e) {
 				// e.printStackTrace();
-				rw.print(e);
+				rw.print("PS.EXECUTEQUERY POST RESULTS: " + e);
 			} finally {
 				if (ps != null) {
 			        try {
 			            ps.close();
 			        } catch (SQLException e) {
 			        	// e.printStackTrace();
-			        	rw.print(e);
+			        	rw.print("PS.CLOSE RESULTS: " + e);
 			        	}
 			    }
 			}
@@ -100,7 +100,7 @@ public class MobileRegister extends HttpServlet {
 		} catch (SQLException e) {
 			System.out.println("SQLException occured: " + e.getMessage());
 			// e.printStackTrace();
-			rw.print(e);
+			rw.print("BEFORE CON.CLOSE RESULTS: " + e);
 		} finally {
 		    
 		    if (con != null) {
@@ -108,7 +108,7 @@ public class MobileRegister extends HttpServlet {
 		            con.close();
 		        } catch (SQLException e) {
 		        	// e.printStackTrace();
-		        	rw.print(e);
+		        	rw.print("CON.CLOSE RESULTS: " + e);
 		        	}
 		    }
 		}
