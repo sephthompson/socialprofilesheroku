@@ -37,9 +37,7 @@ public class MobileRegister extends HttpServlet {
 				+ " AND accounts.email = ?;";
 		
 		Connection con = null;
-		// Statement stmt = null;
 		PreparedStatement ps = null;
-		ResultSet rs = null;
 
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -49,45 +47,39 @@ public class MobileRegister extends HttpServlet {
 		try {
 			String url = "jdbc:postgresql://ec2-23-23-81-171.compute-1.amazonaws.com:5432/d3der2cpdnsd7k?user=oougodzmcwhapf&password=srdrgT5PV-VxBxlDGBPtzmFfsg";
 			con = DriverManager.getConnection(url);
-
-			System.out.println(preppedQuery); // DEBUG
-
-			ps = con.prepareStatement(preppedQuery);
-
-			ps.setString(1, email);
-			ps.setString(2, password);
-			ps.setString(3, email);
-			ps.setString(4, firstname);
-			ps.setString(5, lastname);
-			ps.setString(6, email);
-
-			System.out.println("SQL=" + preppedQuery.toString()); // DEBUG
-
-			/* rs = ps.executeQuery(preppedQuery);
 			
-			boolean isEmpty = rs.next();
-			
-			if (!isEmpty) {
-				
-				rw.print("failure");
+			try {
 
-			} else if (isEmpty) {
+				System.out.println(preppedQuery); // DEBUG
+	
+				ps = con.prepareStatement(preppedQuery);
+	
+				ps.setString(1, email);
+				ps.setString(2, password);
+				ps.setString(3, email);
+				ps.setString(4, firstname);
+				ps.setString(5, lastname);
+				ps.setString(6, email);
+	
+				System.out.println("SQL=" + preppedQuery.toString()); // DEBUG
 				
-				// Fetch the session from request, create new session if session
-				// is not present in the request.
-				 
-				HttpSession session = request.getSession(true);
-				session.setAttribute("user_id", user_id);
-				session.setAttribute("email", email);
-				session.setAttribute("password", password);
-				session.setAttribute("firstname", firstname);
-				session.setAttribute("lastname", lastname);
+				try {
+					ps.executeQuery(preppedQuery);	
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					ps.close();
+				}
 				
-				rw.print("success");
-
-			} */
-			
-			ps.executeQuery(preppedQuery);
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					if (ps != null) {
+				        try {
+				            ps.close();
+				        } catch (SQLException e) { e.printStackTrace(); }
+				    }
+			}
 
 			System.out.println("Executed=" + preppedQuery.toString()); // DEBUG
 			
@@ -105,24 +97,12 @@ public class MobileRegister extends HttpServlet {
 			System.out.println("SQLException occured: " + e.getMessage());
 			e.printStackTrace();
 		} finally {
-		    if (rs != null) {
-		        try {
-		            rs.close();
-		        } catch (SQLException e) { e.printStackTrace();}
-		    }
-		    if (ps != null) {
-		        try {
-		            ps.close();
-		        } catch (SQLException e) { e.printStackTrace(); }
-		    }
+		    
 		    if (con != null) {
 		        try {
 		            con.close();
 		        } catch (SQLException e) { e.printStackTrace();}
 		    }
-//		    if (rs == null) {
-//		    	rw.write("RESULT SET EMPTY"); // SERVLET PASSING THIS INFORMATION
-//		    }
 		}
 	}
 }
