@@ -95,7 +95,7 @@ public class MobileRegister extends HttpServlet {
 			}
 			
 			// RESPONSE TO CLIENT -- HAPPENS WHATEVER THE OUTCOME
-			rw.print("BOOYA");
+			// rw.print("BOOYA");
 
 		} catch (SQLException e) {
 			System.out.println("SQLException occured: " + e.getMessage());
