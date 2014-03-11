@@ -64,8 +64,11 @@ public class MobileRegister extends HttpServlet {
 				
 				try {
 					rs = ps.executeQuery();
+					boolean isEmpty = rs.next();
 					
-					while (rs.next()) {
+					if (!isEmpty) {
+						rw.print("failure");
+					} else if (isEmpty) {
 					
 						HttpSession session = request.getSession(true);
 						session.setAttribute("user_id", user_id);
@@ -78,6 +81,7 @@ public class MobileRegister extends HttpServlet {
 						rw.print("success");
 						
 					}
+					rs.close();
 					
 				} catch (Exception e) {
 					// e.printStackTrace();
