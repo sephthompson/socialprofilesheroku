@@ -60,48 +60,56 @@ public class MobileRegister extends HttpServlet {
 				ps.setString(4, firstname);
 				ps.setString(5, lastname);
 				ps.setString(6, email);
-	
-				System.out.println("SQL=" + preppedQuery.toString()); // DEBUG
 				
 				try {
-					ps.executeQuery(preppedQuery);	
+					ps.executeQuery(preppedQuery);
+					
+					HttpSession session = request.getSession(true);
+					session.setAttribute("user_id", user_id);
+					session.setAttribute("email", email);
+					session.setAttribute("password", password);
+					session.setAttribute("firstname", firstname);
+					session.setAttribute("lastname", lastname);
+					
+					// SUCCESS RESPONSE TO CLIENT
+					rw.print("success");
+					
 				} catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					ps.close();
+					// e.printStackTrace();
+					rw.print(e);
 				}
 				
-				} catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					if (ps != null) {
-				        try {
-				            ps.close();
-				        } catch (SQLException e) { e.printStackTrace(); }
-				    }
+				}
+			catch (Exception e) {
+				// e.printStackTrace();
+				rw.print(e);
+			} finally {
+				if (ps != null) {
+			        try {
+			            ps.close();
+			        } catch (SQLException e) {
+			        	// e.printStackTrace();
+			        	rw.print(e);
+			        	}
+			    }
 			}
-
-			System.out.println("Executed=" + preppedQuery.toString()); // DEBUG
 			
-			HttpSession session = request.getSession(true);
-			session.setAttribute("user_id", user_id);
-			session.setAttribute("email", email);
-			session.setAttribute("password", password);
-			session.setAttribute("firstname", firstname);
-			session.setAttribute("lastname", lastname);
-			
-			// RESPONSE TO CLIENT */
-			rw.print("success");
+			// RESPONSE TO CLIENT -- HAPPENS WHATEVER THE OUTCOME
+			rw.print("BOOYA");
 
 		} catch (SQLException e) {
 			System.out.println("SQLException occured: " + e.getMessage());
-			e.printStackTrace();
+			// e.printStackTrace();
+			rw.print(e);
 		} finally {
 		    
 		    if (con != null) {
 		        try {
 		            con.close();
-		        } catch (SQLException e) { e.printStackTrace();}
+		        } catch (SQLException e) {
+		        	// e.printStackTrace();
+		        	rw.print(e);
+		        	}
 		    }
 		}
 	}
