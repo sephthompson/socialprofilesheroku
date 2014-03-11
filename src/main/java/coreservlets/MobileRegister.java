@@ -21,7 +21,7 @@ public class MobileRegister extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		
 		String user_id = request.getParameter("user_id");
-		String email = request.getParameter("email").replaceAll(pattern1, "");
+		String email = request.getParameter("email");//.replaceAll(pattern1, "");
 		String password = request.getParameter("password").replaceAll(pattern2, "");
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
@@ -44,6 +44,7 @@ public class MobileRegister extends HttpServlet {
 		} catch (ClassNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
+		
 		try {
 			String url = "jdbc:postgresql://ec2-23-23-81-171.compute-1.amazonaws.com:5432/d3der2cpdnsd7k?user=oougodzmcwhapf&password=srdrgT5PV-VxBxlDGBPtzmFfsg";
 			con = DriverManager.getConnection(url);
@@ -61,23 +62,23 @@ public class MobileRegister extends HttpServlet {
 				ps.setString(5, lastname);
 				ps.setString(6, email);
 				
-				try {
-					ps.execute();
-					
-					HttpSession session = request.getSession(true);
-					session.setAttribute("user_id", user_id);
-					session.setAttribute("email", email);
-					session.setAttribute("password", password);
-					session.setAttribute("firstname", firstname);
-					session.setAttribute("lastname", lastname);
-					
-					// SUCCESS RESPONSE TO CLIENT
-					rw.print("success");
-					
-				} catch (Exception e) {
-					// e.printStackTrace();
-					rw.print("PS.EXECUTEQUERY RESULTS: " + e); // PROBLEM HERE
-				}
+					try {
+						ps.execute();
+						
+						HttpSession session = request.getSession(true);
+						session.setAttribute("user_id", user_id);
+						session.setAttribute("email", email);
+						session.setAttribute("password", password);
+						session.setAttribute("firstname", firstname);
+						session.setAttribute("lastname", lastname);
+						
+						// SUCCESS RESPONSE TO CLIENT
+						rw.print("success");
+						
+					} catch (Exception e) {
+						// e.printStackTrace();
+						rw.print("PS.EXECUTEQUERY RESULTS: " + e); // PROBLEM HERE
+					}
 				
 				}
 			catch (Exception e) {
@@ -102,7 +103,6 @@ public class MobileRegister extends HttpServlet {
 			// e.printStackTrace();
 			rw.print("BEFORE CON.CLOSE RESULTS: " + e);
 		} finally {
-		    
 		    if (con != null) {
 		        try {
 		            con.close();
