@@ -38,7 +38,6 @@ public class MobileRegister extends HttpServlet {
 		
 		Connection con = null;
 		PreparedStatement ps = null;
-		ResultSet rs = null;
 
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -63,25 +62,17 @@ public class MobileRegister extends HttpServlet {
 				ps.setString(6, email);
 				
 				try {
-					rs = ps.executeQuery();
-					boolean isEmpty = rs.next();
+					ps.execute();
 					
-					if (!isEmpty) {
-						rw.print("failure");
-					} else if (isEmpty) {
+					HttpSession session = request.getSession(true);
+					session.setAttribute("user_id", user_id);
+					session.setAttribute("email", email);
+					session.setAttribute("password", password);
+					session.setAttribute("firstname", firstname);
+					session.setAttribute("lastname", lastname);
 					
-						HttpSession session = request.getSession(true);
-						session.setAttribute("user_id", user_id);
-						session.setAttribute("email", email);
-						session.setAttribute("password", password);
-						session.setAttribute("firstname", firstname);
-						session.setAttribute("lastname", lastname);
-						
-						// SUCCESS RESPONSE TO CLIENT
-						rw.print("success");
-						
-					}
-					rs.close();
+					// SUCCESS RESPONSE TO CLIENT
+					rw.print("success");
 					
 				} catch (Exception e) {
 					// e.printStackTrace();
