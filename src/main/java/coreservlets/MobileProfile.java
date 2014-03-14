@@ -16,13 +16,13 @@ public class MobileProfile extends HttpServlet {
 	
 	PrintWriter pw = new PrintWriter(output);
 
-	public void doPost() throws JSONException {
+	public void doGet() throws JSONException {
 
 		JSONObject json = new JSONObject();
-		json.put("email", "");
-		json.put("firstname", "");
-		json.put("lastname", "");
-		json.put("about", "");
+		json.put("email", "japple@email.com");
+		json.put("firstname", "Johnny");
+		json.put("lastname", "Appleseed");
+		json.put("about", "This user currently has no information.");
 		
 		pw.write(json.toString());
 	}
