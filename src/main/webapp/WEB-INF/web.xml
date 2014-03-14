@@ -77,6 +77,15 @@
 		<url-pattern>/mobileregister</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>MobileProfile</servlet-name>
+		<servlet-class>coreservlets.MobileProfile</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MobileProfile</servlet-name>
+		<url-pattern>/mobileprofile</url-pattern>
+	</servlet-mapping>
+	
 	<!-- <security-constraint>
     <web-resource-collection>
       <web-resource-name>secured</web-resource-name>
