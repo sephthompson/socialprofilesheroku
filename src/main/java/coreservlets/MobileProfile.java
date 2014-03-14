@@ -24,7 +24,12 @@ public class MobileProfile extends HttpServlet {
 		json.put("lastname", "Appleseed");
 		json.put("about", "This user currently has no information.");
 		
-		pw.write(json.toString());
+		try {
+			pw.write(json.toString());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
