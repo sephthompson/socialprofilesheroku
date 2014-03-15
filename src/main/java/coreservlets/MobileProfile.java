@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -23,11 +24,13 @@ public class MobileProfile extends HttpServlet {
 		
 		JSONObject json = new JSONObject();
 		
+		HttpSession session = request.getSession(true);
+		
 		try {
-			json.put("email", "japple@email.com");
-			json.put("firstname", "Johnny");
-			json.put("lastname", "Appleseed");
-			json.put("about", "This user currently has no information.");
+			json.put("email", session.getAttribute("email"));
+			json.put("firstname", session.getAttribute("firstname"));
+			json.put("lastname", session.getAttribute("lastname"));
+			json.put("about", session.getAttribute("about"));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			rw.print(e);
