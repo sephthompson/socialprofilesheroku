@@ -37,7 +37,9 @@ public class MobileProfile extends HttpServlet {
 			rw.print(e);
 		}
 		
+		rw.print(session.getId() + "\n");
 		rw.print(json.toString());
+		
 	}
 
 }
