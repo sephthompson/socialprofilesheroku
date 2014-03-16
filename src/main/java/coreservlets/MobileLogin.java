@@ -57,7 +57,7 @@ public class MobileLogin extends HttpServlet {
 				 * is not present in the request.
 				 */
 				HttpSession session = request.getSession(true);
-				session.setAttribute("sessionid", session.getId());
+				//session.setAttribute("sessionid", session.getId());
 				session.setAttribute("email", rs.getString("email"));
 				session.setAttribute("firstname", rs.getString("firstname"));
 				session.setAttribute("lastname", rs.getString("lastname"));
