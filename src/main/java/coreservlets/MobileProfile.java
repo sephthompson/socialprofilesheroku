@@ -27,7 +27,7 @@ public class MobileProfile extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		
 		try {
-			json.put("sessionid", session.getId().toString());
+			json.put("sessionid", session.getAttribute("sessionid"));
 			json.put("email", session.getAttribute("email"));
 			json.put("firstname", session.getAttribute("firstname"));
 			json.put("lastname", session.getAttribute("lastname"));
