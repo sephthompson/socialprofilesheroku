@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.*;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,8 +47,6 @@ public class MobileLogin extends HttpServlet {
 			PrintWriter rw = response.getWriter(); // WRITER
 			
 			if (!isEmpty) {
-				// Redirect to error page
-				// response.sendRedirect("LoginFailure.jsp");
 				
 				rw.print("failure");
 
@@ -61,9 +60,13 @@ public class MobileLogin extends HttpServlet {
 				session.setAttribute("firstname", rs.getString("firstname"));
 				session.setAttribute("lastname", rs.getString("lastname"));
 				session.setAttribute("about", rs.getString("about"));
+				
+				// Cookies defined here
+				Cookie cookie = new Cookie("url", "profilesque dot com");
+				cookie.setMaxAge(60*60*24); // 24 hours
+				response.addCookie(cookie);
 
-				// Redirect to success page
-				// response.sendRedirect("LoginSuccess.jsp");
+				// Print response
 				
 				rw.print("success");
 
