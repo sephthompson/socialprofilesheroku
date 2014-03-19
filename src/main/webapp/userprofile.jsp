@@ -51,3 +51,10 @@
 	</center>
 </body>
 </html>
+
+<%
+if(session.getAttribute("email")==null)
+{
+response.sendRedirect("/templogincheck");
+}
+%>
