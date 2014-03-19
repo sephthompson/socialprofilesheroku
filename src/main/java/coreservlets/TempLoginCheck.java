@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.*;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 //import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +49,11 @@ public class TempLoginCheck extends HttpServlet {
 				session.setAttribute("firstname", rs.getString("firstname"));
 				session.setAttribute("lastname", rs.getString("lastname"));
 				session.setAttribute("about", rs.getString("about"));
+				
+				// Cookies defined here
+				Cookie cookie = new Cookie("url", "profilesque dot com");
+				cookie.setMaxAge(5); // 5 seconds
+				response.addCookie(cookie);
 				
 				// Redirect to success page
 				response.sendRedirect("LoginSuccess.jsp");
