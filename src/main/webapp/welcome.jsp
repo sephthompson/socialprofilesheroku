@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Welcome</title>
 </head>
 <body>
 	<center>
@@ -12,7 +12,8 @@
 		<table border="0" width="50%">
 			<tbody>
 				<tr>
-					<td>DEBUG: Your user ID is:</td>
+					<td>DEBUG: Your user ID is:
+					<br>(One probably hasn't been passed to the session, yet)</td>
 					<td><%=session.getAttribute("user_id")%></td>
 				</tr>
 				<tr>
@@ -22,6 +23,14 @@
 				<tr>
 					<td>DEBUG: You have set your password as:</td>
 					<td><%=session.getAttribute("password")%></td>
+				</tr>
+				<tr>
+					<td>DEBUG: You have set your first name as:</td>
+					<td><%=session.getAttribute("firstname")%></td>
+				</tr>
+				<tr>
+					<td>DEBUG: You have set your last name as:</td>
+					<td><%=session.getAttribute("lastname")%></td>
 				</tr>
 			</tbody>
 		</table>

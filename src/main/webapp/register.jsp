@@ -15,6 +15,8 @@
 						<form action=registersubmit method="post">
 							Email Address: <input type="text" name="email"><br>
 							Password: <input type="text" name="password"><br>
+							First Name: <input type="text" name="firstname"><br>
+							Last Name: <input type="text" name="lastname"><br>
 							<center>
 								<br>
 								<button type="submit">
