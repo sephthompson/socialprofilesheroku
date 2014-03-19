@@ -52,7 +52,7 @@ public class TempLoginCheck extends HttpServlet {
 				
 				// Cookies defined here
 				Cookie cookie = new Cookie("url", "profilesque dot com");
-				cookie.setMaxAge(5); // 5 seconds
+				cookie.setMaxAge(60*60); // 1 hour
 				response.addCookie(cookie);
 				
 				// Redirect to success page
