@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//import javax.servlet.http.HttpSession;
-
 public class registersubmit extends HttpServlet {
 
 	private static final long serialVersionUID = 1029849297015934427L;
@@ -26,6 +24,8 @@ public class registersubmit extends HttpServlet {
 		String password = request.getParameter("password").replaceAll(pattern2, "");
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
+		
+		PrintWriter rw = response.getWriter(); // WRITER
 
 		String preppedQuery = "INSERT INTO accounts (email, password)"
 				+ " VALUES (?, ?);" + "INSERT INTO profiles (user_id)"
@@ -72,6 +72,9 @@ public class registersubmit extends HttpServlet {
 				session.setAttribute("password", password);
 				session.setAttribute("firstname", firstname);
 				session.setAttribute("lastname", lastname);
+				
+				// RESPONSE TO CLIENT
+				response.sendRedirect("welcome.jsp");
 				
 			} catch (Exception e) {
 				e.printStackTrace();
