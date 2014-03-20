@@ -2,9 +2,6 @@ package coreservlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.CookieHandler;
-import java.net.CookieManager;
-import java.net.CookiePolicy;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,9 +19,6 @@ public class MobileProfile extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		
-		CookieHandler.setDefault(new CookieManager(null,
-				CookiePolicy.ACCEPT_ALL));
 		
 		PrintWriter rw = response.getWriter(); // WRITER
 		
