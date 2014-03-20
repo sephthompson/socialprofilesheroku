@@ -2,6 +2,9 @@ package coreservlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -21,6 +24,9 @@ public class MobileProfile extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		
+		CookieHandler.setDefault(new CookieManager(null,
+				CookiePolicy.ACCEPT_ALL));
+		
 		PrintWriter rw = response.getWriter(); // WRITER
 		
 		JSONObject json = new JSONObject();
@@ -28,7 +34,7 @@ public class MobileProfile extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		
 		// Cookies defined here
-		Cookie cookie = new Cookie("email", (String) session.getAttribute("email"));
+		Cookie cookie = new Cookie("JSESSIONID", session.getId());
 		cookie.setMaxAge(60*60); // 1 hour
 		response.addCookie(cookie);
 		

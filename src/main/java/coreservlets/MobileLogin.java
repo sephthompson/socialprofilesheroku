@@ -2,6 +2,9 @@ package coreservlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
 import java.sql.*;
 
 import javax.servlet.ServletException;
@@ -20,6 +23,9 @@ public class MobileLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
+		
+		CookieHandler.setDefault(new CookieManager(null,
+				CookiePolicy.ACCEPT_ALL));
 		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -62,7 +68,7 @@ public class MobileLogin extends HttpServlet {
 				session.setAttribute("about", rs.getString("about"));
 
 				// Cookies defined here
-				Cookie cookie = new Cookie("email", email);
+				Cookie cookie = new Cookie("JSESSIONID", session.getId());
 				cookie.setMaxAge(60*60); // 1 hour
 				response.addCookie(cookie);
 

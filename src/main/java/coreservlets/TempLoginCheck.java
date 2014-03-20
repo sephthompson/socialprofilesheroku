@@ -51,7 +51,7 @@ public class TempLoginCheck extends HttpServlet {
 				session.setAttribute("about", rs.getString("about"));
 /*				
 				// Cookies defined here
-				Cookie cookie = new Cookie("url", "calm-shore-springmvc-hibernate.herokuapp.com");
+				Cookie cookie = new Cookie("JSESSIONID", session.getId());
 				cookie.setMaxAge(60*60); // 1 hour
 				response.addCookie(cookie);
 */
