@@ -37,7 +37,7 @@ public class MobileProfile extends HttpServlet {
 			rw.print("Servlet e Msg: " + e);
 		}
 		
-		rw.print("Servlet JSON Msg: " + json);
+		rw.print(json);
 		
 	}
 
