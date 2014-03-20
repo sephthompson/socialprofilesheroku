@@ -60,12 +60,12 @@ public class MobileLogin extends HttpServlet {
 				session.setAttribute("firstname", rs.getString("firstname"));
 				session.setAttribute("lastname", rs.getString("lastname"));
 				session.setAttribute("about", rs.getString("about"));
-
+/*
 				// Cookies defined here
 				Cookie cookie = new Cookie("JSESSIONID", session.getId());
 				cookie.setMaxAge(60*60); // 1 hour
 				response.addCookie(cookie);
-
+*/
 				// Print response
 				
 				rw.print("success");
