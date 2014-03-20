@@ -34,7 +34,7 @@ public class MobileProfile extends HttpServlet {
 			json.put("about", session.getAttribute("about"));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
-			rw.print(e);
+			rw.print("Servlet e Msg: " + e);
 		}
 		
 		rw.print(json);
